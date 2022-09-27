@@ -1,22 +1,19 @@
-<#--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">-->
-<#--    <a class="navbar-brand" href="/">Garage</a>-->
-<#--    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"-->
-<#--            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
-<#--        <span class="navbar-toggler-icon"></span>-->
-<#--    </button>-->
 
-<#--    <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">Garage</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-<#--        <ul class="navbar-nav mr-auto">-->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Users</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/">Cars</a>
+            </li>
+        </ul>
 
-<#--            <li class="nav-item">-->
-<#--                <a class="nav-link" href="/main">Home</a>-->
-<#--            </li>-->
-<#--            <li class="nav-item">-->
-<#--                <a class="nav-link" href="/messages">Messages</a>-->
-<#--            </li>-->
-
-<#--        </ul>-->
-
-<#--    </div>-->
-<#--</nav>-->
+    </div>
+</nav>
