@@ -18,4 +18,10 @@ public class UserService {
         return userRepository.findAll();
     }
 
+
+    public void userSave(User user, String surname, String name) {
+        user.setSurname(surname);
+        user.setName(name);
+        userRepository.save(user);
+    }
 }

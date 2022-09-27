@@ -19,4 +19,13 @@ public class CarService {
         return carRepository.findAll();
     }
 
+    public void carSave(Car car, String carBrand, String model, int year, String carNumber) {
+        car.setCarBrand(carBrand);
+        car.setModel(model);
+        if(year != 0){
+            car.setYear(year);
+        }
+        car.setCarNumber(carNumber);
+        carRepository.save(car);
+    }
 }
