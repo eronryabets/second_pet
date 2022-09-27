@@ -4,6 +4,8 @@
     <h5>ID : ${car.id} ; brand : ${car.carBrand} ; model : ${car.model} ; car number : ${car.carNumber} </h5>
     <h5>Owner : ${car.user.surname} ; Owner's id : ${car.user.id}  </h5>
 
+    <h5><p style="color:red">${message!}</p></h5>
+
     <form action="/carSave/${car.id}" method="post">
         <div class="container">
             <br>
@@ -37,7 +39,7 @@
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-1 col-form-label">Owner: </label>
+                <label class="col-sm-1 col-form-label">Owner ID: </label>
                 <div class="col-sm-3">
                     <input type="number" name="ownerId" class="form-control" value="${car.user.id}"/>
                 </div>

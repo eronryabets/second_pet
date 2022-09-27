@@ -1,7 +1,6 @@
 package com.eronryabets.second_pet.controller;
 
 import com.eronryabets.second_pet.entity.Car;
-import com.eronryabets.second_pet.entity.User;
 import com.eronryabets.second_pet.service.CarService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class CarController {
@@ -26,8 +26,13 @@ public class CarController {
     }
 
     @GetMapping("/car/edit/{car}")
-    public String carEdit(@PathVariable Car car, Model model){
+    public String carEdit(@PathVariable Car car,
+                          @RequestParam(required = false, value = "message") String message,
+                          Model model
+
+    ){
         model.addAttribute("car",car);
+        model.addAttribute("message",message);
         return "car_edit";
     }
 
@@ -37,15 +42,21 @@ public class CarController {
             @RequestParam("carModel") String carModel,
             @RequestParam(required = false, defaultValue = "0", value = "year") int year,
             @RequestParam("carNumber") String carNumber,
-            @RequestParam("ownerId") User user,
+            @RequestParam("ownerId") Long userId,
             @RequestParam("carId") Car car,
 
-            @PathVariable Car carPath
+            @PathVariable Car carPath,
+            RedirectAttributes redirectAttributes
 
     ){
-        carService.carSave(car,carBrand,carModel,year,carNumber, user);
+        if(!carService.carSave(car,carBrand,carModel,year,carNumber, userId)){
+            redirectAttributes.addAttribute("message", "Owner id " + userId + " not exists!");
+            return "redirect:/car/edit/{carPath}";
+        }
+
         return "redirect:/car/edit/{carPath}";
     }
+
 
 
 

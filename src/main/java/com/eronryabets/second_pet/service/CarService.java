@@ -24,16 +24,20 @@ public class CarService {
         return carRepository.findAll();
     }
 
-    public void carSave(Car car, String carBrand, String model, int year, String carNumber, User user) {
-
+    public boolean carSave(Car car, String carBrand, String model, int year, String carNumber, Long userId) {
+        Optional<User> userFromDb = userRepository.findById(userId);
+        if(!userFromDb.isPresent()){
+            return false;
+        }
         car.setCarBrand(carBrand);
         car.setModel(model);
         if(year != 0){
             car.setYear(year);
         }
         car.setCarNumber(carNumber);
-        car.setUser(user);
+        car.setUser(userFromDb.get());
         carRepository.save(car);
+        return true;
 
     }
 }
