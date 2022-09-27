@@ -8,10 +8,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/">Users</a>
+                <a class="nav-link" href="/show_users">Users</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/">Cars</a>
+                <a class="nav-link" href="/show_cars">Cars</a>
             </li>
         </ul>
 
