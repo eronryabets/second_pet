@@ -31,16 +31,20 @@ public class CarController {
         return "car_edit";
     }
 
-    @PostMapping("/carSave")
+    @PostMapping("/carSave/{carPath}")
     public String carSave(
             @RequestParam("carBrand") String carBrand,
-            @RequestParam("model") String model,
+            @RequestParam("carModel") String carModel,
             @RequestParam(required = false, defaultValue = "0", value = "year") int year,
             @RequestParam("carNumber") String carNumber,
-            @RequestParam("carId") Car car
+            @RequestParam("ownerId") User user,
+            @RequestParam("carId") Car car,
+
+            @PathVariable Car carPath
+
     ){
-        carService.carSave(car,carBrand,model,year,carNumber);
-        return "redirect:/show_cars";
+        carService.carSave(car,carBrand,carModel,year,carNumber, user);
+        return "redirect:/car/edit/{carPath}";
     }
 
 
