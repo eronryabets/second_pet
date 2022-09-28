@@ -38,6 +38,7 @@
             <th>id</th>
             <th>Surname</th>
             <th>Name</th>
+            <th>Options</th>
             <th></th>
         </tr>
         </thead>
@@ -47,7 +48,8 @@
                 <td>${user.id}</td>
                 <td>${user.surname}</td>
                 <td>${user.name}</td>
-                <td><a href="/user/edit/${user.id}" class="btn btn-dark">Edit</a></td>
+                <td><a href="/user/edit/${user.id}" class="btn btn-dark">Edit</a>
+                <a href="/user/delete/${user.id}" class="btn btn-danger">Delete</a></td>
 
             </tr>
         <#else >

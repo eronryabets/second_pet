@@ -57,6 +57,7 @@
             <th>Car number</th>
             <th>Car owner</th>
             <th>Car owner id</th>
+            <th>Options</th>
             <th></th>
         </tr>
         </thead>
@@ -71,7 +72,8 @@
                 <td><#if (car.user.surname)??>${car.user.id}<#else> Hasn't owner</#if></td>
                 <td>${(car.user.id)!}</td>
 
-                <td><a href="/car/edit/${car.id}" class="btn btn-dark">Edit</a></td>
+                <td><a href="/car/edit/${car.id}" class="btn btn-dark">Edit</a>
+                <a href="/car/delete/${car.id}" class="btn btn-danger">Delete</a></td>
 
             </tr>
         <#else >

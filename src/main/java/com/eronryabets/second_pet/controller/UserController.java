@@ -4,10 +4,7 @@ import com.eronryabets.second_pet.entity.User;
 import com.eronryabets.second_pet.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class UserController {
@@ -46,6 +43,13 @@ public class UserController {
             @RequestParam("name") String name
     ){
         userService.userAdd(surname,name);
+        return "redirect:/show_users";
+    }
+
+    @RequestMapping(value = "/user/delete/{user}",
+            method={RequestMethod.DELETE, RequestMethod.GET})
+    public String userDelete(@PathVariable User user){
+        userService.userDelete(user);
         return "redirect:/show_users";
     }
 
