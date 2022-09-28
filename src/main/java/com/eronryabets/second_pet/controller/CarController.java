@@ -50,7 +50,7 @@ public class CarController {
 
     ){
         if(!carService.carSave(car,carBrand,carModel,year,carNumber, userId)){
-            redirectAttributes.addAttribute("message", "Owner id " + userId + " not exists!");
+            redirectAttributes.addAttribute("message", "Owner id " + userId + " is not exists!");
             return "redirect:/car/edit/{carPath}";
         }
 
