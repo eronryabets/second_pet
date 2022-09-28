@@ -2,7 +2,35 @@
 <@c.page>
 
     <h5>All users : </h5>
-    <br><br>
+    <br>
+
+    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
+       aria-controls="collapseExample">
+        Add new User
+    </a>
+    <br>
+    <div class="collapse" id="collapseExample">
+        <div class="form-group mt-3">
+            <form action="/userAdd" method="post">
+                <div class="form-group">
+                    <input type="text" class="form-control col-sm-4" name="surname" placeholder="Surname"
+                           required="required" minlength = "2"/>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control col-sm-4" name="name" placeholder="Name"
+                           required="required" minlength = "1"/>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <br>
+
 
     <table class="table table-sm table-dark">
         <thead>
@@ -14,7 +42,7 @@
         </tr>
         </thead>
         <tbody>
-        <#list users?sortBy("surname") as user>
+        <#list users?sortBy("id") as user>
             <tr>
                 <td>${user.id}</td>
                 <td>${user.surname}</td>

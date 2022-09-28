@@ -24,4 +24,11 @@ public class UserService {
         user.setName(name);
         userRepository.save(user);
     }
+
+    public void userAdd(String surname, String name) {
+        User user = new User();
+        user.setSurname(surname);
+        user.setName(name);
+        userRepository.save(user);
+    }
 }

@@ -20,8 +20,11 @@ public class CarController {
     }
 
     @GetMapping("/show_cars")
-    public String cars(Model model){
+    public String cars(Model model,
+                       @RequestParam(required = false, value = "message") String message
+    ){
         model.addAttribute("cars", carService.findAll());
+        model.addAttribute("message",message);
         return "show_cars";
     }
 
@@ -55,6 +58,25 @@ public class CarController {
         }
 
         return "redirect:/car/edit/{carPath}";
+    }
+
+    @PostMapping("/show_cars")
+    public String carAdd(
+            @RequestParam("carBrand") String carBrand,
+            @RequestParam("carModel") String carModel,
+            @RequestParam("year") int year,
+            @RequestParam("carNumber") String carNumber,
+            @RequestParam("ownerId") Long ownerId,
+
+            RedirectAttributes redirectAttributes
+
+    ){
+        if(!carService.carAdd(carBrand,carModel,year,carNumber, ownerId)){
+            redirectAttributes.addAttribute("message", "Owner id " + ownerId + " is not exists!");
+            return "redirect:/show_cars";
+        }
+
+        return "redirect:/show_cars";
     }
 
 

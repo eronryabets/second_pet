@@ -40,4 +40,15 @@ public class UserController {
         return "redirect:/show_users";
     }
 
+    @PostMapping("/userAdd")
+    public String userAdd(
+            @RequestParam("surname") String surname,
+            @RequestParam("name") String name
+    ){
+        userService.userAdd(surname,name);
+        return "redirect:/show_users";
+    }
+
+
+
 }

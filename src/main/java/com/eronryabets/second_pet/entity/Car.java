@@ -28,6 +28,16 @@ public class Car {
     @JoinColumn(name = "owner_id")
     private User user;
 
+    public Car() {
+    }
+
+    public Car(String carBrand, String model, int year, String carNumber) {
+        this.carBrand = carBrand;
+        this.model = model;
+        this.year = year;
+        this.carNumber = carNumber;
+    }
+
     public long getId() {
         return id;
     }
@@ -70,5 +80,9 @@ public class Car {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

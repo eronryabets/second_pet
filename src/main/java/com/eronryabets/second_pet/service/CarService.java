@@ -41,4 +41,22 @@ public class CarService {
 
 
     }
+
+    public boolean carAdd(String carBrand, String carModel, int year, String carNumber, Long ownerId) {
+        Optional<User> userFromDb = userRepository.findById(ownerId);
+        if(!userFromDb.isPresent()){
+            return false;
+        }
+        Car car = new Car();
+        car.setCarBrand(carBrand);
+        car.setModel(carModel);
+        car.setYear(year);
+        car.setCarNumber(carNumber);
+        car.setUser(userFromDb.get());
+
+        car.setId(carRepository.getMaxCarId()+1);
+        carRepository.save(car);
+
+        return true;
+    }
 }
