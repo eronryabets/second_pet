@@ -1,6 +1,8 @@
 package com.eronryabets.second_pet.service;
 
+import com.eronryabets.second_pet.entity.Car;
 import com.eronryabets.second_pet.entity.User;
+import com.eronryabets.second_pet.repository.CarRepository;
 import com.eronryabets.second_pet.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -9,9 +11,11 @@ import java.util.List;
 @Service
 public class UserService {
     private final UserRepository userRepository;
+    private final CarRepository carRepository;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, CarRepository carRepository) {
         this.userRepository = userRepository;
+        this.carRepository = carRepository;
     }
 
     public List<User> findAll(){
@@ -33,6 +37,12 @@ public class UserService {
     }
 
     public void userDelete(User user) {
+        List<Car> carList = user.getCarList();
+        carList.forEach(car -> {
+            car.setUser(null);
+            carRepository.save(car);
+        });
+        user.setCarList(null);
         userRepository.delete(user);
     }
 }

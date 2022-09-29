@@ -69,7 +69,7 @@
                 <td>${car.model}</td>
                 <td>${car.year}</td>
                 <td>${car.carNumber}</td>
-                <td><#if (car.user.surname)??>${car.user.id}<#else> Hasn't owner</#if></td>
+                <td><#if (car.user.surname)??>${car.user.surname}<#else> Hasn't owner</#if></td>
                 <td>${(car.user.id)!}</td>
 
                 <td><a href="/car/edit/${car.id}" class="btn btn-dark">Edit</a>
