@@ -37,12 +37,16 @@ public class UserService {
     }
 
     public void userDelete(User user) {
+        carDetach(user);
+        userRepository.delete(user);
+    }
+
+    public void carDetach(User user){
         List<Car> carList = user.getCarList();
         carList.forEach(car -> {
             car.setUser(null);
             carRepository.save(car);
         });
         user.setCarList(null);
-        userRepository.delete(user);
     }
 }
