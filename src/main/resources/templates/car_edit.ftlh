@@ -2,7 +2,8 @@
 <@c.page>
 
     <h5>ID : ${car.id} ; brand : ${car.carBrand} ; model : ${car.model} ; car number : ${car.carNumber} </h5>
-    <h5>Owner : ${car.user.surname} ; Owner's id : ${car.user.id}  </h5>
+    <h5>Owner : <#if (car.user.surname)??>${car.user.surname}<#else> Didn't have owner</#if>
+        ; Owner's id :  <#if (car.user.id)??>${car.user.id}<#else> none </#if> </h5>
 
     <h5><p style="color:red">${message!}</p></h5>
 
@@ -41,7 +42,7 @@
             <div class="form-group row">
                 <label class="col-sm-1 col-form-label">Owner ID: </label>
                 <div class="col-sm-3">
-                    <input type="number" name="ownerId" class="form-control" value="${car.user.id}"/>
+                    <input type="number" name="ownerId" class="form-control" value="${(car.user.id)!} "/>
                 </div>
             </div>
 
