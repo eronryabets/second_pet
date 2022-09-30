@@ -34,8 +34,7 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="number" class="form-control col-sm-4" name="ownerId" placeholder="car owner"
-                           required="required" minlength = "1"/>
+                    <input type="number" class="form-control col-sm-4" name="ownerId" placeholder="car owner"/>
                 </div>
 
                 <div class="form-group">
