@@ -5,14 +5,14 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-    <changeSet id="3" author="eronryabets">
+    <changeSet id="5" author="eronryabets">
         <sqlFile dbms="mysql"
                  encoding="utf8"
                  endDelimiter="\nGO"
                  relativeToChangelogFile="true"
                  splitStatements="true"
                  stripComments="true"
-                 path="01-create-cars-table.sql"/>
+                 path="01-add-users-entity.sql"/>
         <rollback>
             <sqlFile dbms="mysql"
                      encoding="utf8"
@@ -20,7 +20,7 @@
                      relativeToChangelogFile="true"
                      splitStatements="true"
                      stripComments="true"
-                     path="01-drop-cars-table.sql"/>
+                     path="01-delete-users-entity.sql"/>
         </rollback>
     </changeSet>
 
