@@ -1,21 +1,37 @@
 package com.eronryabets.second_pet.entity;
 
+import lombok.*;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "cars")
+@Getter
+@Setter
+@NoArgsConstructor
+@RequiredArgsConstructor
+@ToString
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "car_id")
     private Long id;
+
     @Column(name = "car_brand")
+    @NonNull
     private String carBrand;
+
+
     @Column(name = "model")
+    @NonNull
     private String model;
+
     @Column(name = "year")
+    @NonNull
     private int year;
+
     @Column(name = "car_number")
+    @NonNull
     private String carNumber;
 
     @ManyToOne(
@@ -28,61 +44,4 @@ public class Car {
     @JoinColumn(name = "owner_id")
     private User user;
 
-    public Car() {
-    }
-
-    public Car(String carBrand, String model, int year, String carNumber) {
-        this.carBrand = carBrand;
-        this.model = model;
-        this.year = year;
-        this.carNumber = carNumber;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public String getCarBrand() {
-        return carBrand;
-    }
-
-    public void setCarBrand(String carBrand) {
-        this.carBrand = carBrand;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
-    }
-
-    public String getCarNumber() {
-        return carNumber;
-    }
-
-    public void setCarNumber(String carNumber) {
-        this.carNumber = carNumber;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 }

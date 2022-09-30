@@ -1,7 +1,6 @@
 package com.eronryabets.second_pet.controller;
 
 import com.eronryabets.second_pet.entity.Car;
-import com.eronryabets.second_pet.entity.User;
 import com.eronryabets.second_pet.service.CarService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +22,11 @@ public class CarController {
     ){
         model.addAttribute("cars", carService.findAll());
         model.addAttribute("message",message);
+
+        //List<Car> carList = carService.findAll();
+        //carList.forEach(car -> log.debug("Have some cars: {}", car.toString()));
+        //carList.forEach(System.out::println);
+
         return "show_cars";
     }
 
