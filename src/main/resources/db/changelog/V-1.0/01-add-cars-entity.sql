@@ -39,7 +39,7 @@ GO
         cars
         (car_brand, car_number, model,  year)
     values
-        ('Honda', 'AA 4444 AA', 'S2000',  2007)
+        ('Honda', 'AA 5555 AA', 'S2000',  2007)
 
 GO
 
