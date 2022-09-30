@@ -64,7 +64,7 @@ public class CarController {
             @RequestParam("carModel") String carModel,
             @RequestParam("year") int year,
             @RequestParam("carNumber") String carNumber,
-            @RequestParam("ownerId") Long ownerId,
+            @RequestParam(required = false, defaultValue = "0", value = "ownerId") Long ownerId,
 
             RedirectAttributes redirectAttributes
 
