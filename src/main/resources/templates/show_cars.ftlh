@@ -3,13 +3,13 @@
 
     <h5>All cars : </h5>
     <h5><p style="color:red">${message!}</p></h5>
-    <br>
+    <br/>
 
     <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
        aria-controls="collapseExample">
         Add new Car
     </a>
-    <br>
+    <br/>
     <div class="collapse" id="collapseExample">
         <div class="form-group mt-3">
             <form action="/show_cars" method="post">
@@ -44,8 +44,8 @@
         </div>
     </div>
 
-    <br>
-
+    <br/>
+    <div id="cars-table">
     <table class="table table-sm table-dark">
         <thead>
         <tr>
@@ -80,5 +80,6 @@
         </#list>
         </tbody>
     </table>
+    </div>
 
 </@c.page>
