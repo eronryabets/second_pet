@@ -2,12 +2,14 @@ package com.eronryabets.second_pet.controller;
 
 import com.eronryabets.second_pet.entity.Car;
 import com.eronryabets.second_pet.service.CarService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
+@Slf4j
 public class CarController {
 
     private final CarService carService;
@@ -23,9 +25,7 @@ public class CarController {
         model.addAttribute("cars", carService.findAll());
         model.addAttribute("message",message);
 
-        //List<Car> carList = carService.findAll();
-        //carList.forEach(car -> log.debug("Have some cars: {}", car.toString()));
-        //carList.forEach(System.out::println);
+        carService.findAll().forEach(car -> log.debug("Car : {}", car.toString()));
 
         return "show_cars";
     }

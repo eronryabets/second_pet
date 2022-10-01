@@ -2,11 +2,13 @@ package com.eronryabets.second_pet.controller;
 
 import com.eronryabets.second_pet.entity.User;
 import com.eronryabets.second_pet.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@Slf4j
 public class UserController {
 
     private final UserService userService;
@@ -18,6 +20,9 @@ public class UserController {
     @GetMapping("/show_users")
     public String users(Model model) {
         model.addAttribute("users", userService.findAll());
+
+        userService.findAll().forEach(user -> log.debug("User : {}", user.toString()));
+
         return "show_users";
     }
 
