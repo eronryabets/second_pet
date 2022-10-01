@@ -1,51 +1,26 @@
 package com.eronryabets.second_pet;
 
-import com.eronryabets.second_pet.controller.CarController;
+import com.eronryabets.second_pet.entity.Car;
+import com.eronryabets.second_pet.repository.CarRepository;
+import com.eronryabets.second_pet.repository.UserRepository;
+import com.eronryabets.second_pet.service.CarService;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
+import org.mockito.Mockito;
 
-import static org.hamcrest.Matchers.containsString;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.mockito.Mockito.mock;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-@AutoConfigureMockMvc
-@TestPropertySource("/application-test.properties")
 public class CarTest {
 
-    @Autowired
-    private CarController carController;
-
-    private MockMvc mockMvc;
-
-   @Autowired
-   public void setMockMvc(MockMvc mockMvc){
-       this.mockMvc = mockMvc;
-   }
+    private final CarRepository carRepository = mock(CarRepository.class);
+    private final UserRepository userRepository = mock(UserRepository.class);
+    private final CarService carService = new CarService(carRepository,userRepository );
 
     @Test
-    public void contextLoads() throws Exception{
-        this.mockMvc.perform(get("/"))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(content().string(containsString("Hello, guest")))
-                .andExpect(content().string(containsString("This a simple Pet Project :)")));
-    }
-
-    @Test
-    public void showCars() throws Exception{
-       this.mockMvc.perform(get("/show_cars"))
-               .andDo(print())
-               .andExpect(status().isOk())
-               .andExpect(xpath("//*[@id='cars-table']/div").nodeCount(0));
+    public void testCreateCar(){
+        Car car = new Car("Honda","Test 8D",2020,"TT 4444 TT");
+        carRepository.save(car);
+        Mockito.verify(carRepository, Mockito.times(1))
+                .save(car);
     }
 
 }
