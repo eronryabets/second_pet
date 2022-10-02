@@ -42,31 +42,27 @@ public class CarService {
 
     }
 
-    public boolean carAdd(String carBrand, String carModel, int year, String carNumber, Long ownerId) {
-        Optional<User> userFromDb = userRepository.findById(ownerId);
-        if(!userFromDb.isPresent() & !(ownerId == 0)){
-            return false;
-        }
-        Car car = new Car();
-        car.setCarBrand(carBrand);
-        car.setModel(carModel);
-        car.setYear(year);
-        car.setCarNumber(carNumber);
-        if(!(ownerId == 0)){
-            car.setUser(userFromDb.get());
-        }
-        Optional<Long> currentId = carRepository.getCurrentCarId();
-        if(!currentId.isPresent()){
-            car.setId(1L);
-        } else {
-            car.setId(currentId.get()+1);
-        }
+    public boolean addCar(String carBrand, String carModel, int year, String carNumber, Long ownerId) {
+
+        Optional<User> userFromDb = ownerId == null
+                ? Optional.empty()
+                : userRepository.findById(ownerId);
+        User user = userFromDb.orElseThrow(() -> new RuntimeException("User not found"));
+
+        Car car = Car.builder()
+                .carBrand(carBrand)
+                .model(carModel)
+                .year(year)
+                .carNumber(carNumber)
+                .user(user)
+                .build();
+
         carRepository.save(car);
 
         return true;
     }
 
-    public void carDelete(Car car) {
+    public void deleteCar(Car car) {
         carRepository.delete(car);
     }
 }

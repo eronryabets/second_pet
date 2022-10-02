@@ -11,6 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @ToString
+@Builder
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

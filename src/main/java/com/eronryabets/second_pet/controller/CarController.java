@@ -68,12 +68,12 @@ public class CarController {
             @RequestParam("carModel") String carModel,
             @RequestParam("year") int year,
             @RequestParam("carNumber") String carNumber,
-            @RequestParam(required = false, defaultValue = "0", value = "ownerId") Long ownerId,
+            @RequestParam(required = false, value = "ownerId") Long ownerId, //default null
 
             RedirectAttributes redirectAttributes
 
     ){
-        if(!carService.carAdd(carBrand,carModel,year,carNumber, ownerId)){
+        if(!carService.addCar(carBrand,carModel,year,carNumber, ownerId)){
             redirectAttributes.addAttribute("message", "Owner id " + ownerId + " is not exists!");
             return "redirect:/show_cars";
         }
@@ -84,7 +84,7 @@ public class CarController {
     @RequestMapping(value = "/car/delete/{car}",
             method={RequestMethod.DELETE, RequestMethod.GET})
     public String carDelete(@PathVariable Car car){
-        carService.carDelete(car);
+        carService.deleteCar(car);
         return "redirect:/show_cars";
     }
 
