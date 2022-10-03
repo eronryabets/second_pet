@@ -42,13 +42,13 @@ public class CarController {
         return "car_edit";
     }
 
-    @PostMapping("/carSave/{carPath}")
+    @PostMapping("/saveCar/{carPath}")
     public String saveCar(
             @RequestParam("carBrand") String carBrand,
             @RequestParam("carModel") String carModel,
             @RequestParam(required = false, defaultValue = "0", value = "year") int year,
             @RequestParam("carNumber") String carNumber,
-            @RequestParam("ownerId") Long userId,
+            @RequestParam(required = false, value = "ownerId")  Long userId,
             @RequestParam("carId") Car car,
 
             @PathVariable Car carPath,

@@ -7,7 +7,7 @@
 
     <h5><p style="color:red">${message!}</p></h5>
 
-    <form action="/carSave/${car.id}" method="post">
+    <form action="/saveCar/${car.id}" method="post">
         <div class="container">
             <br>
 
@@ -28,7 +28,7 @@
             <div class="form-group row">
                 <label class="col-sm-1 col-form-label">Year: </label>
                 <div class="col-sm-3">
-                    <input type="number" name="year" class="form-control" value="${car.year}"/>
+                    <input type="number" name="year" class="form-control" placeholder="${car.year!}"/>
                 </div>
             </div>
 
@@ -36,13 +36,14 @@
                 <label class="col-sm-1 col-form-label">Car number: </label>
                 <div class="col-sm-3">
                     <input type="text" name="carNumber" class="form-control" value="${car.carNumber}"/>
+
                 </div>
             </div>
 
             <div class="form-group row">
                 <label class="col-sm-1 col-form-label">Owner ID: </label>
                 <div class="col-sm-3">
-                    <input type="number" name="ownerId" class="form-control" value="${(car.user.id)!} "/>
+                    <input type="number" name="ownerId" class="form-control" value="${(car.user.id)!}"/>
                 </div>
             </div>
 
