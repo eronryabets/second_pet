@@ -23,25 +23,25 @@ public class UserService {
     }
 
 
-    public void userSave(User user, String surname, String name) {
+    public void saveUser(User user, String surname, String name) {
         user.setSurname(surname);
         user.setName(name);
         userRepository.save(user);
     }
 
-    public void userAdd(String surname, String name) {
+    public void addUser(String surname, String name) {
         User user = new User();
         user.setSurname(surname);
         user.setName(name);
         userRepository.save(user);
     }
 
-    public void userDelete(User user) {
-        carDetach(user);
+    public void deleteUser(User user) {
+        detachCar(user);
         userRepository.delete(user);
     }
 
-    public void carDetach(User user){
+    public void detachCar(User user){
         List<Car> carList = user.getCarList();
         carList.forEach(car -> {
             car.setUser(null);

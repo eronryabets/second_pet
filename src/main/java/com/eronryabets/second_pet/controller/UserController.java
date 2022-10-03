@@ -33,28 +33,28 @@ public class UserController {
     }
 
     @PostMapping("/userSave")
-    public String userSave(
+    public String saveUser(
             @RequestParam("surname") String surname,
             @RequestParam("name") String name,
             @RequestParam("userId") User user
     ){
-        userService.userSave(user,surname,name);
+        userService.saveUser(user,surname,name);
         return "redirect:/show_users";
     }
 
     @PostMapping("/userAdd")
-    public String userAdd(
+    public String addUser(
             @RequestParam("surname") String surname,
             @RequestParam("name") String name
     ){
-        userService.userAdd(surname,name);
+        userService.addUser(surname,name);
         return "redirect:/show_users";
     }
 
     @RequestMapping(value = "/user/delete/{user}",
             method={RequestMethod.DELETE, RequestMethod.GET})
-    public String userDelete(@PathVariable User user){
-        userService.userDelete(user);
+    public String deleteUser(@PathVariable User user){
+        userService.deleteUser(user);
         return "redirect:/show_users";
     }
 

@@ -1,6 +1,7 @@
 package com.eronryabets.second_pet.controller;
 
 import com.eronryabets.second_pet.entity.Car;
+import com.eronryabets.second_pet.exceptions.UserNotFoundException;
 import com.eronryabets.second_pet.service.CarService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -31,7 +32,7 @@ public class CarController {
     }
 
     @GetMapping("/car/edit/{car}")
-    public String carEdit(@PathVariable Car car,
+    public String editCar(@PathVariable Car car,
                           @RequestParam(required = false, value = "message") String message,
                           Model model
 
@@ -42,7 +43,7 @@ public class CarController {
     }
 
     @PostMapping("/carSave/{carPath}")
-    public String carSave(
+    public String saveCar(
             @RequestParam("carBrand") String carBrand,
             @RequestParam("carModel") String carModel,
             @RequestParam(required = false, defaultValue = "0", value = "year") int year,
@@ -54,7 +55,7 @@ public class CarController {
             RedirectAttributes redirectAttributes
 
     ){
-        if(!carService.carSave(car,carBrand,carModel,year,carNumber, userId)){
+        if(!carService.saveCar(car,carBrand,carModel,year,carNumber, userId)){
             redirectAttributes.addAttribute("message", "Owner id " + userId + " is not exists!");
             return "redirect:/car/edit/{carPath}";
         }
@@ -63,27 +64,29 @@ public class CarController {
     }
 
     @PostMapping("/show_cars")
-    public String carAdd(
+    public String addCar(
             @RequestParam("carBrand") String carBrand,
             @RequestParam("carModel") String carModel,
             @RequestParam("year") int year,
             @RequestParam("carNumber") String carNumber,
-            @RequestParam(required = false, value = "ownerId") Long ownerId, //default null
+            @RequestParam(required = false, value = "ownerId") Long ownerId,
 
             RedirectAttributes redirectAttributes
 
     ){
-        if(!carService.addCar(carBrand,carModel,year,carNumber, ownerId)){
-            redirectAttributes.addAttribute("message", "Owner id " + ownerId + " is not exists!");
-            return "redirect:/show_cars";
+        try {carService.addCar(carBrand,carModel,year,carNumber, ownerId);
+        }catch (UserNotFoundException e) {
+            redirectAttributes.addAttribute("message",
+                    "Owner id " + ownerId + " is not exists!");
         }
+
 
         return "redirect:/show_cars";
     }
 
     @RequestMapping(value = "/car/delete/{car}",
             method={RequestMethod.DELETE, RequestMethod.GET})
-    public String carDelete(@PathVariable Car car){
+    public String deleteCar(@PathVariable Car car){
         carService.deleteCar(car);
         return "redirect:/show_cars";
     }

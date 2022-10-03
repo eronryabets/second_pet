@@ -2,6 +2,7 @@ package com.eronryabets.second_pet.service;
 
 import com.eronryabets.second_pet.entity.Car;
 import com.eronryabets.second_pet.entity.User;
+import com.eronryabets.second_pet.exceptions.UserNotFoundException;
 import com.eronryabets.second_pet.repository.CarRepository;
 import com.eronryabets.second_pet.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,7 @@ public class CarService {
         return carRepository.findAll();
     }
 
-    public boolean carSave(Car car, String carBrand, String model, int year, String carNumber, Long userId) {
+    public boolean saveCar(Car car, String carBrand, String model, int year, String carNumber, Long userId) {
         Optional<User> userFromDb = userRepository.findById(userId);
         if(!userFromDb.isPresent()){
             return false;
@@ -42,12 +43,12 @@ public class CarService {
 
     }
 
-    public boolean addCar(String carBrand, String carModel, int year, String carNumber, Long ownerId) {
+    public void addCar(String carBrand, String carModel, int year, String carNumber, Long ownerId) {
 
         Optional<User> userFromDb = ownerId == null
                 ? Optional.empty()
                 : userRepository.findById(ownerId);
-        User user = userFromDb.orElseThrow(() -> new RuntimeException("User not found"));
+        User user = userFromDb.orElseThrow(() -> new UserNotFoundException("User not found"));
 
         Car car = Car.builder()
                 .carBrand(carBrand)
@@ -59,10 +60,10 @@ public class CarService {
 
         carRepository.save(car);
 
-        return true;
     }
 
     public void deleteCar(Car car) {
         carRepository.delete(car);
     }
 }
+

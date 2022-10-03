@@ -17,7 +17,12 @@ public class CarTest {
 
     @Test
     public void testCreateCar(){
-        Car car = new Car("Honda","Test 8D",2020,"TT 4444 TT");
+                Car car = Car.builder()
+                .carBrand("Honda")
+                .model("Test 8D")
+                .year(2020)
+                .carNumber("TT 4444 TT")
+                .build();
         carRepository.save(car);
         Mockito.verify(carRepository, Mockito.times(1))
                 .save(car);
