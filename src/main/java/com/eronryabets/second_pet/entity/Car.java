@@ -8,11 +8,12 @@ import javax.persistence.*;
 @Table(name = "cars")
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @RequiredArgsConstructor
 @AllArgsConstructor
 @ToString
-@Builder
+@EqualsAndHashCode
 public class Car {
 
     @Id

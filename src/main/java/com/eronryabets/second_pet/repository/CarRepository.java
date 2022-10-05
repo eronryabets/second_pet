@@ -12,6 +12,6 @@ public interface CarRepository extends JpaRepository<Car, Long> {
     List<Car> findAllByUser(User user);
 
     @Query("SELECT  MAX(id) FROM Car ")
-    Optional<Long> getCurrentCarId();
+    Optional<Long> getCurrentLastCarId();
 
 }

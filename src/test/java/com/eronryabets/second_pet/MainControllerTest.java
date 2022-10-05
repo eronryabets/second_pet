@@ -42,5 +42,7 @@ public class MainControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("Hello, guest")))
                 .andExpect(content().string(containsString("This a simple Pet Project :)")));
+
     }
+
 }

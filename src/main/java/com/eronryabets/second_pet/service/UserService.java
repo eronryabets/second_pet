@@ -30,9 +30,12 @@ public class UserService {
     }
 
     public void addUser(String surname, String name) {
-        User user = new User();
-        user.setSurname(surname);
-        user.setName(name);
+
+        User user = User.builder()
+                .surname(surname)
+                .name(name)
+                .build();
+
         userRepository.save(user);
     }
 
