@@ -44,8 +44,7 @@ public class CarController {
         model.addAttribute("message",message);
         return "car_edit";
     }
-    //TODO
-    //@PostMapping("/saveCar/{carPath}")
+
     @RequestMapping(value = "/car/edit/{carID}", method = RequestMethod.POST)
     public String saveCar(
             @Valid @ModelAttribute("car") Car car,

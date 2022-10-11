@@ -25,7 +25,6 @@ public class CarService {
         return carRepository.findAll();
     }
 
-    //TODO
     public void saveCar(Car car, String carBrand, String model, int year, String carNumber, Long ownerId) {
         Optional<User> userFromDb = ownerId == null
                 ? Optional.empty()
