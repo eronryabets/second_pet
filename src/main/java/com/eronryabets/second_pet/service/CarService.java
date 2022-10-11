@@ -25,20 +25,21 @@ public class CarService {
         return carRepository.findAll();
     }
 
-    public boolean saveCar(Car car, String carBrand, String model, int year, String carNumber, Long userId) {
-        Optional<User> userFromDb = userRepository.findById(userId);
-        if(!userFromDb.isPresent()){
-            return false;
-        }
+    //TODO
+    public void saveCar(Car car, String carBrand, String model, int year, String carNumber, Long ownerId) {
+        Optional<User> userFromDb = ownerId == null
+                ? Optional.empty()
+                : userRepository.findById(ownerId);
+        User user = userFromDb.orElseThrow(() -> new UserNotFoundException("User not found"));
+
         car.setCarBrand(carBrand);
         car.setModel(model);
         if(year != 0){
             car.setYear(year);
         }
         car.setCarNumber(carNumber);
-        car.setUser(userFromDb.get());
+        car.setUser(user);
         carRepository.save(car);
-        return true;
 
 
     }

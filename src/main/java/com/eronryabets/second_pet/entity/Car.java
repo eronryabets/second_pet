@@ -3,6 +3,7 @@ package com.eronryabets.second_pet.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "cars")
@@ -23,6 +24,7 @@ public class Car {
 
     @Column(name = "car_brand")
     @NonNull
+    @NotBlank(message = "Car brand must be not empty!")
     private String carBrand;
 
 
