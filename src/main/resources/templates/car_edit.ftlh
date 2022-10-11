@@ -8,7 +8,6 @@
 
     <h5><p style="color:red">${message!}</p></h5>
 
-<#--    <form action="/saveCar/${car.id}" method="post">-->
     <form action="/car/edit/${car.id}" method="post">
         <div class="container">
             <br>
@@ -16,32 +15,67 @@
             <div class="form-group row">
                 <label class="col-sm-1 col-form-label">Brand: </label>
                 <div class="col-sm-3">
-                        <input type="text" name="carBrand" class="form-control" value="${(car.carBrand)!}" />
-                    <#if car??>
+                        <@spring.bind "car.carBrand" />
+                        <input type="text" name="carBrand"
+                               class="form-control <#if (spring.status.isError())>is-invalid<#else>is-valid</#if>"
+                               value="${(car.carBrand)!}" />
+
+                    <div class="invalid-feedback">
                         <@spring.bind "car.carBrand" />
                         <@spring.showErrors "<br>"/>
-                    </#if>
+                    </div>
+
                 </div>
             </div>
+
 
             <div class="form-group row">
                 <label class="col-sm-1 col-form-label">Model: </label>
                 <div class="col-sm-3">
-                    <input type="text" name="carModel" class="form-control" value="${car.model}"/>
+                    <@spring.bind "car.model" />
+                    <input type="text" name="carModel"
+                           class="form-control <#if (spring.status.isError())>is-invalid<#else>is-valid</#if>"
+                           value="${car.model}"/>
+
+                    <div class="invalid-feedback">
+                        <@spring.bind "car.model" />
+                        <@spring.showErrors "<br>"/>
+                    </div>
+
                 </div>
             </div>
+
 
             <div class="form-group row">
                 <label class="col-sm-1 col-form-label">Year: </label>
                 <div class="col-sm-3">
-                    <input type="number" name="year" class="form-control" placeholder="${car.year!}"/>
+                    <@spring.bind "car.year" />
+                    <input type="number" name="year"
+                           class="form-control <#if (spring.status.isError())>is-invalid<#else>is-valid</#if>"
+                           placeholder="${car.year!}"/>
+
+                    <div class="invalid-feedback">
+                        <@spring.bind "car.year" />
+                        <@spring.showErrors "<br>"/>
+                    </div>
+
                 </div>
             </div>
+
+
 
             <div class="form-group row">
                 <label class="col-sm-1 col-form-label">Car number: </label>
                 <div class="col-sm-3">
-                    <input type="text" name="carNumber" class="form-control" value="${car.carNumber}"/>
+                    <@spring.bind "car.carNumber" />
+                    <input type="text" name="carNumber"
+                           class="form-control <#if (spring.status.isError())>is-invalid<#else>is-valid</#if>"
+                           value="${car.carNumber}"/>
+
+                    <div class="invalid-feedback">
+                        <@spring.bind "car.carNumber" />
+                        <@spring.showErrors "<br>"/>
+                    </div>
 
                 </div>
             </div>

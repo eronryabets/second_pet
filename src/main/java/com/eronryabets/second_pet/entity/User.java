@@ -3,6 +3,7 @@ package com.eronryabets.second_pet.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,11 +24,13 @@ public class User {
     @Column(name = "surname")
     @Setter
     @NonNull
+    @NotBlank(message = "Surname must be not empty!")
     private String surname;
 
     @Column(name = "name")
     @Setter
     @NonNull
+    @NotBlank(message = "Name must be not empty!")
     private String name;
 
     @OneToMany(mappedBy = "user",
